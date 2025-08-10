@@ -3,32 +3,102 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Portfolio video — Il mio sito</title>
-  <meta name="description" content="Portfolio con player YouTube incorporato (privacy-enhanced)." />
+  <title>FilippoCSV — Portfolio</title>
+  <meta name="description" content="Portfolio di FilippoCSV con video, contatti e progetti." />
   <style>
     body {
       margin: 0;
       background: #000;
       color: #fff;
       font-family: Arial, sans-serif;
+    }
+    header {
+      background: #111;
+      padding: 10px 20px;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      min-height: 100vh;
+      justify-content: space-between;
     }
-    iframe {
-      max-width: 100%;
-      border: none;
-    }
-    h1 {
+    header h1 {
+      margin: 0;
       font-size: 1.5rem;
-      margin-bottom: 20px;
+    }
+    nav a {
+      color: #fff;
+      margin-left: 15px;
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 20px;
+    }
+    section {
+      display: none;
+    }
+    section.active {
+      display: block;
+    }
+    h2 {
+      margin-top: 0;
+    }
+    .subcategory {
+      margin-top: 15px;
     }
   </style>
 </head>
 <body>
-  <h1>Il mio video</h1>
-  <iframe width="800" height="450" src="https://www.youtube-nocookie.com/embed/LzwIt7OCwzE?rel=0&modestbranding=1" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  <header>
+    <h1>FilippoCSV</h1>
+    <nav>
+      <a href="#home" onclick="showSection('home')">Home</a>
+      <a href="#portfolio" onclick="showSection('portfolio')">Portfolio</a>
+      <a href="#contatti" onclick="showSection('contatti')">Contatti</a>
+    </nav>
+  </header>
+  <main>
+    <section id="home" class="active">
+      <h2>Benvenuto</h2>
+      <p>Questa è la home del portfolio di FilippoCSV.</p>
+    </section>
+    <section id="portfolio">
+      <h2>Portfolio</h2>
+      <div class="subcategory" id="video">
+        <h3>Video</h3>
+        <div id="video-list"></div>
+      </div>
+      <div class="subcategory" id="visual">
+        <h3>Visual</h3>
+        <div id="visual-list"></div>
+      </div>
+      <div class="subcategory" id="audiovisuale">
+        <h3>Audiovisuale interattivo</h3>
+        <div id="audiovisuale-list"></div>
+      </div>
+    </section>
+    <section id="contatti">
+      <h2>Contatti</h2>
+      <p>Email: <a href="mailto:filippo.pacelli0@gmail.com">filippo.pacelli0@gmail.com</a></p>
+      <p>Instagram: <a href="https://instagram.com/filipppac_" target="_blank">@filipppac_</a></p>
+    </section>
+  </main>
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('main section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    // Aggiungiamo il video che hai indicato nella sezione Video
+    const videoList = document.getElementById('video-list');
+    const iframe = document.createElement('iframe');
+    iframe.width = '800';
+    iframe.height = '450';
+    iframe.src = 'https://www.youtube-nocookie.com/embed/LzwIt7OCwzE?rel=0&modestbranding=1';
+    iframe.title = 'YouTube video player';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+    videoList.appendChild(iframe);
+  </script>
 </body>
 </html>
