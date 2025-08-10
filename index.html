@@ -46,6 +46,10 @@
     .subcategory {
       margin-top: 15px;
     }
+    iframe {
+      display: block;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
@@ -89,16 +93,23 @@
       document.getElementById(id).classList.add('active');
     }
 
-    // Aggiungiamo il video che hai indicato nella sezione Video
     const videoList = document.getElementById('video-list');
-    const iframe = document.createElement('iframe');
-    iframe.width = '800';
-    iframe.height = '450';
-    iframe.src = 'https://www.youtube-nocookie.com/embed/LzwIt7OCwzE?rel=0&modestbranding=1';
-    iframe.title = 'YouTube video player';
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-    iframe.allowFullscreen = true;
-    videoList.appendChild(iframe);
+    const videoIDs = [
+      'LzwIt7OCwzE',
+      'wuvEYViLPUs',
+      'Jc7N9rbg7UU'
+    ];
+
+    videoIDs.forEach(id => {
+      const iframe = document.createElement('iframe');
+      iframe.width = '800';
+      iframe.height = '450';
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
+      iframe.title = 'YouTube video player';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      videoList.appendChild(iframe);
+    });
   </script>
 </body>
 </html>
