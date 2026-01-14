@@ -3,55 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>FilippoCSV — Portfolio</title>
-  <meta name="description" content="Portfolio di FilippoCSV con video, contatti e progetti." />
+  <title>FilippoCSV — Home</title>
+  <meta name="description" content="Portfolio di FilippoCSV — Home" />
 
   <style>
-    body {
-      margin: 0;
-      background: #000;
-      color: #fff;
-      font-family: Arial, sans-serif;
-    }
+    body { margin:0; background:#000; color:#fff; font-family:Arial,sans-serif; }
+    header { background:#111; padding:10px 20px; display:flex; justify-content:space-between; align-items:center; }
+    header h1 { margin:0; font-size:1.5rem; }
+    nav a { color:#fff; margin-left:15px; text-decoration:none; }
+    nav a:hover { text-decoration:underline; }
 
-    header {
-      background: #111;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      z-index: 10;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 1.5rem;
-    }
-
-    nav a {
-      color: #fff;
-      margin-left: 15px;
-      text-decoration: none;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    main {
-      padding: 20px;
-    }
-
-    section {
-      display: none;
-    }
-
-    section.active {
-      display: block;
-    }
-
-    /* ================= HOME ================= */
     #home {
       position: relative;
       background: url('media/home.gif') center center / cover no-repeat;
@@ -61,132 +22,29 @@
       justify-content: center;
       text-align: center;
     }
-
     #home::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: 0;
+      content: ""; position: absolute; inset:0; background:rgba(0,0,0,0.6); z-index:0;
     }
+    #home * { position: relative; z-index:1; }
 
-    #home * {
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ================= ALTRE SEZIONI ================= */
-    #portfolio, #contatti {
-      background: #000; /* sfondo nero uniforme */
-      padding: 40px 20px;
-      display: block;
-    }
-
-    /* ================= CONTENUTI HOME ================= */
-    .home-content {
-      max-width: 800px;
-    }
-
-    .home-content ul {
-      list-style: none;
-      padding: 0;
-      margin-top: 30px;
-      font-size: 1.2rem;
-      line-height: 1.8;
-    }
-
-    .home-content li::before {
-      content: "— ";
-    }
-
-    /* ================= PORTFOLIO GRID ================= */
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 40px 30px;
-      margin-top: 30px;
-    }
-
-    iframe {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      background: #000;
-      border: none;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    iframe:hover {
-      transform: scale(1.03);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-    }
-
-    /* ================= DRIVE THUMBNAIL ================= */
-    .video-wrapper {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      cursor: pointer;
-      overflow: hidden;
-      border-radius: 8px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background: #000;
-    }
-
-    .video-wrapper:hover {
-      transform: scale(1.03);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-    }
-
-    .video-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* mantiene proporzioni senza taglio */
-      background: #000;    /* bande nere se necessario */
-      display: block;
-    }
-
-    .play-button {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-    }
-
-    a {
-      color: #fff;
-    }
-
-    @media (max-width: 1024px) {
-      .video-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .video-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    .home-content { max-width:800px; }
+    .home-content ul { list-style:none; padding:0; margin-top:30px; font-size:1.2rem; line-height:1.8; }
+    .home-content li::before { content:"— "; }
   </style>
 </head>
-
 <body>
 
 <header>
   <h1>FilippoCSV</h1>
   <nav>
-    <a href="#home" onclick="showSection('home')">Home</a>
-    <a href="#portfolio" onclick="showSection('portfolio')">Portfolio</a>
-    <a href="#contatti" onclick="showSection('contatti')">Contatti</a>
+    <a href="index.html">Home</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="contatti.html">Contatti</a>
   </nav>
 </header>
 
 <main>
-
-  <!-- HOME -->
-  <section id="home" class="active">
+  <section id="home">
     <div class="home-content">
       <h2>Esperienze</h2>
       <ul>
@@ -197,80 +55,9 @@
       </ul>
     </div>
   </section>
-
-  <!-- PORTFOLIO -->
-  <section id="portfolio">
-    <h2>Portfolio</h2>
-    <div class="video-grid" id="video-grid">
-
-      <!-- Video Google Drive con thumbnail locale -->
-      <div class="video-wrapper" data-src="https://drive.google.com/file/d/1LvRxKPRekWSWcwqF3tqaPO54esfRy-Nb/preview">
-        <img src="media/thumbnail-drive.jpg" alt="Thumbnail Video">
-        <div class="play-button">
-          <svg width="80" height="80" viewBox="0 0 24 24" fill="white" opacity="0.8">
-            <path d="M8 5v14l11-7z"/>
-          </svg>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- CONTATTI -->
-  <section id="contatti">
-    <h2>Contatti</h2>
-    <p>Email:
-      <a href="mailto:filippo.pacelli0@gmail.com">
-        filippo.pacelli0@gmail.com
-      </a>
-    </p>
-  </section>
-
 </main>
-
-<script>
-  function showSection(id) {
-    document.querySelectorAll('main section')
-      .forEach(sec => sec.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
-
-  // Video YouTube
-  const videoIDs = [
-    'LzwIt7OCwzE',
-    'wuvEYViLPUs',
-    'Jc7N9rbg7UU',
-    'xzg8gwSNUx8',
-    'ZLihGwTvYjY' // video aggiuntivo
-  ];
-
-  const grid = document.getElementById('video-grid');
-
-  videoIDs.forEach(id => {
-    const iframe = document.createElement('iframe');
-    iframe.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
-    iframe.allow =
-      'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-    iframe.allowFullscreen = true;
-    grid.appendChild(iframe);
-  });
-
-  // Click per aprire i video Drive
-  document.querySelectorAll('.video-wrapper').forEach(wrapper => {
-    wrapper.addEventListener('click', () => {
-      const src = wrapper.getAttribute('data-src');
-      const iframe = document.createElement('iframe');
-      iframe.src = src;
-      iframe.allow = 'autoplay';
-      iframe.style.width = '100%';
-      iframe.style.height = '100%';
-      iframe.style.border = 'none';
-      wrapper.innerHTML = '';
-      wrapper.appendChild(iframe);
-    });
-  });
-</script>
 
 </body>
 </html>
+
 
