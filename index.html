@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>FilippoCSV — Portfolio</title>
-  <meta name="description" content="Portfolio di FilippoCSV con video, contatti e progetti." />
 
   <style>
     body {
@@ -18,15 +17,8 @@
       background: #111;
       padding: 10px 20px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      position: relative;
-      z-index: 10;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 1.5rem;
+      align-items: center;
     }
 
     nav a {
@@ -35,30 +27,18 @@
       text-decoration: none;
     }
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+    section { display: none; }
+    section.active { display: block; }
 
-    main {
-      padding: 20px;
-    }
-
-    section {
-      display: none;
-    }
-
-    section.active {
-      display: block;
-    }
-
+    /* HOME */
     #home {
-      position: relative;
-      background: url('media/home.gif') center center / cover no-repeat;
+      background: url('media/home.gif') center / cover no-repeat;
       min-height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       text-align: center;
+      position: relative;
     }
 
     #home::before {
@@ -70,21 +50,10 @@
 
     .home-content {
       position: relative;
-      max-width: 800px;
+      z-index: 1;
     }
 
-    .home-content ul {
-      list-style: none;
-      padding: 0;
-      margin-top: 30px;
-      font-size: 1.2rem;
-      line-height: 1.8;
-    }
-
-    .home-content li::before {
-      content: "— ";
-    }
-
+    /* GRID */
     .video-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -92,22 +61,9 @@
       margin-top: 30px;
     }
 
-    iframe {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border: none;
-      background: #000;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    iframe:hover {
-      transform: scale(1.03);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-    }
-
+    /* THUMBNAIL */
     .video-thumb {
       position: relative;
-      width: 100%;
       aspect-ratio: 16 / 9;
       cursor: pointer;
       overflow: hidden;
@@ -118,11 +74,24 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center top;
       transition: transform 0.4s ease;
     }
 
     .video-thumb:hover img {
       transform: scale(1.05);
+    }
+
+    .video-title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 15px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+      box-sizing: border-box;
     }
 
     .play-button {
@@ -131,32 +100,21 @@
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 64px;
-      color: #fff;
-      opacity: 0.9;
       pointer-events: none;
-      text-shadow: 0 10px 30px rgba(0,0,0,0.8);
     }
 
-    .video-thumb iframe {
+    iframe {
       width: 100%;
       height: 100%;
       border: none;
     }
 
     @media (max-width: 1024px) {
-      .video-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .video-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 600px) {
-      .video-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    a {
-      color: #fff;
+      .video-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -166,9 +124,8 @@
 <header>
   <h1>FilippoCSV</h1>
   <nav>
-    <a href="#home" onclick="showSection('home')">Home</a>
-    <a href="#portfolio" onclick="showSection('portfolio')">Portfolio</a>
-    <a href="#contatti" onclick="showSection('contatti')">Contatti</a>
+    <a onclick="showSection('home')">Home</a>
+    <a onclick="showSection('portfolio')">Portfolio</a>
   </nav>
 </header>
 
@@ -177,12 +134,7 @@
 <section id="home" class="active">
   <div class="home-content">
     <h2>Esperienze</h2>
-    <ul>
-      <li>Cortometraggio “In alto ancora”</li>
-      <li>Secondo posto – Cento Ore Film Festival</li>
-      <li>Musical – Goliardia Pisana</li>
-      <li>Videoclip – Aaron “Rumore”</li>
-    </ul>
+    <p>In alto ancora — corto</p>
   </div>
 </section>
 
@@ -192,8 +144,9 @@
   <div class="video-grid" id="video-grid">
 
     <div class="video-thumb" onclick="loadDriveVideo(this)">
-      <img src="media/thumb-video.jpg" alt="Play video">
+      <img src="media/thumb-video.jpg" alt="In alto ancora">
       <div class="play-button">▶</div>
+      <div class="video-title">IN ALTO ANCORA</div>
       <template>
         <iframe
           src="https://drive.google.com/file/d/1LvRxKPRekWSWcwqF3tqaPO54esfRy-Nb/preview"
@@ -205,20 +158,11 @@
   </div>
 </section>
 
-<section id="contatti">
-  <h2>Contatti</h2>
-  <p>Email:
-    <a href="mailto:filippo.pacelli0@gmail.com">
-      filippo.pacelli0@gmail.com
-    </a>
-  </p>
-</section>
-
 </main>
 
 <script>
 function showSection(id) {
-  document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
@@ -228,19 +172,12 @@ function loadDriveVideo(el) {
   el.appendChild(tpl.content.cloneNode(true));
 }
 
-const videoIDs = [
-  'LzwIt7OCwzE',
-  'wuvEYViLPUs',
-  'Jc7N9rbg7UU',
-  'xzg8gwSNUx8'
-];
-
+const videoIDs = ['LzwIt7OCwzE','wuvEYViLPUs','Jc7N9rbg7UU','xzg8gwSNUx8'];
 const grid = document.getElementById('video-grid');
 
 videoIDs.forEach(id => {
   const iframe = document.createElement('iframe');
   iframe.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
-  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
   iframe.allowFullscreen = true;
   grid.appendChild(iframe);
 });
