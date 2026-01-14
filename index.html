@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>FilippoCSV — Portfolio</title>
   <meta name="description" content="Portfolio di FilippoCSV con video, contatti e progetti." />
+
   <style>
     body {
       margin: 0;
@@ -50,14 +51,11 @@
       display: block;
     }
 
-    h2, h3 {
-      margin-top: 0;
-    }
+    /* ================= HOME ================= */
 
-    /* HOME */
     #home {
       position: relative;
-      background: url('media/nuvola.gif') center center / cover no-repeat;
+      background: url('media/home.gif') center center / cover no-repeat;
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -69,7 +67,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.65);
+      background: rgba(0,0,0,0.6);
       z-index: 0;
     }
 
@@ -94,19 +92,19 @@
       content: "— ";
     }
 
-    /* VIDEO GRID */
+    /* ================= PORTFOLIO GRID ================= */
+
     .video-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 25px;
-      margin-top: 20px;
-      justify-items: center;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px 30px; /* spazio tra righe e colonne */
+      margin-top: 30px;
     }
 
-    video, iframe {
+    video,
+    iframe {
       width: 100%;
-      max-width: 800px;
-      height: 450px;
+      aspect-ratio: 16 / 9;
       background: #000;
       border: none;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
@@ -118,6 +116,19 @@
       box-shadow: 0 20px 60px rgba(0,0,0,0.7);
     }
 
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .video-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .video-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     a {
       color: #fff;
     }
@@ -125,92 +136,83 @@
 </head>
 
 <body>
-  <header>
-    <h1>FilippoCSV</h1>
-    <nav>
-      <a href="#home" onclick="showSection('home')">Home</a>
-      <a href="#portfolio" onclick="showSection('portfolio')">Portfolio</a>
-      <a href="#contatti" onclick="showSection('contatti')">Contatti</a>
-    </nav>
-  </header>
 
-  <main>
-    <!-- HOME -->
-    <section id="home" class="active">
-      <div class="home-content">
-        <h2>Esperienze</h2>
-        <ul>
-          <li>Cortometraggio “In alto ancora”</li>
-          <li>Secondo posto – Cento Ore Film Festival</li>
-          <li>Musical – Goliardia Pisana</li>
-          <li>Videoclip – Aaron “Rumore”</li>
-        </ul>
-      </div>
-    </section>
+<header>
+  <h1>FilippoCSV</h1>
+  <nav>
+    <a href="#home" onclick="showSection('home')">Home</a>
+    <a href="#portfolio" onclick="showSection('portfolio')">Portfolio</a>
+    <a href="#contatti" onclick="showSection('contatti')">Contatti</a>
+  </nav>
+</header>
 
-    <!-- PORTFOLIO -->
-    <section id="portfolio">
-      <h2>Portfolio</h2>
+<main>
 
-      <div class="subcategory">
-        <h3>Video</h3>
-        <div class="video-grid" id="video-grid">
+  <!-- HOME -->
+  <section id="home" class="active">
+    <div class="home-content">
+      <h2>Esperienze</h2>
+      <ul>
+        <li>Cortometraggio “In alto ancora”</li>
+        <li>Secondo posto – Cento Ore Film Festival</li>
+        <li>Musical – Goliardia Pisana</li>
+        <li>Videoclip – Aaron “Rumore”</li>
+      </ul>
+    </div>
+  </section>
 
-          <!-- Google Drive video -->
-          <video autoplay muted loop playsinline controls>
-            <source src="https://drive.google.com/uc?export=download&id=1p6A4J08tVLxCVWKyS58C6_UeT2gJpPSA" type="video/mp4">
-          </video>
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <h2>Portfolio</h2>
 
-        </div>
-      </div>
+    <div class="video-grid" id="video-grid">
 
-      <div class="subcategory">
-        <h3>Visual</h3>
-        <div class="video-grid" id="visual-list"></div>
-      </div>
+      <!-- Video Google Drive -->
+      <video autoplay muted loop playsinline controls>
+        <source src="https://drive.google.com/uc?export=download&id=1p6A4J08tVLxCVWKyS58C6_UeT2gJpPSA" type="video/mp4">
+      </video>
 
-      <div class="subcategory">
-        <h3>Audiovisuale interattivo</h3>
-        <div class="video-grid" id="audiovisuale-list"></div>
-      </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CONTATTI -->
-    <section id="contatti">
-      <h2>Contatti</h2>
-      <p>Email: <a href="mailto:filippo.pacelli0@gmail.com">filippo.pacelli0@gmail.com</a></p>
-      <p>Instagram: <a href="https://instagram.com/filipppac_" target="_blank">@filipppac_</a></p>
-    </section>
-  </main>
+  <!-- CONTATTI -->
+  <section id="contatti">
+    <h2>Contatti</h2>
+    <p>Email:
+      <a href="mailto:filippo.pacelli0@gmail.com">
+        filippo.pacelli0@gmail.com
+      </a>
+    </p>
+  </section>
 
-  <script>
-    function showSection(id) {
-      document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
+</main>
 
-    // VIDEO YOUTUBE
-    const videoIDs = ['LzwIt7OCwzE','wuvEYViLPUs','Jc7N9rbg7UU','xzg8gwSNUx8'];
-    const videoGrid = document.getElementById('video-grid');
+<script>
+  function showSection(id) {
+    document.querySelectorAll('main section')
+      .forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
 
-    videoIDs.forEach(id => {
-      const iframe = document.createElement('iframe');
-      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
-      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-      iframe.allowFullscreen = true;
-      videoGrid.appendChild(iframe);
-    });
+  // Video YouTube
+  const videoIDs = [
+    'LzwIt7OCwzE',
+    'wuvEYViLPUs',
+    'Jc7N9rbg7UU',
+    'xzg8gwSNUx8'
+  ];
 
-    // VISUAL
-    const visualIDs = ['8l6tyL1GhUc','ahlbnplAr0M'];
-    const visualList = document.getElementById('visual-list');
+  const grid = document.getElementById('video-grid');
 
-    visualIDs.forEach(id => {
-      const iframe = document.createElement('iframe');
-      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
-      iframe.allowFullscreen = true;
-      visualList.appendChild(iframe);
-    });
-  </script>
+  videoIDs.forEach(id => {
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
+    iframe.allow =
+      'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+    iframe.allowFullscreen = true;
+    grid.appendChild(iframe);
+  });
+</script>
+
 </body>
 </html>
