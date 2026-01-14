@@ -12,51 +12,118 @@
       color: #fff;
       font-family: Arial, sans-serif;
     }
+
     header {
       background: #111;
       padding: 10px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      position: relative;
+      z-index: 10;
     }
+
     header h1 {
       margin: 0;
       font-size: 1.5rem;
     }
+
     nav a {
       color: #fff;
       margin-left: 15px;
       text-decoration: none;
     }
+
     nav a:hover {
       text-decoration: underline;
     }
+
     main {
       padding: 20px;
     }
+
     section {
       display: none;
     }
+
     section.active {
       display: block;
     }
-    h2 {
+
+    h2, h3 {
       margin-top: 0;
     }
-    .subcategory {
-      margin-top: 15px;
-    }
-    #video-list, #visual-list, #audiovisuale-list {
+
+    /* HOME */
+    #home {
+      position: relative;
+      background: url('media/nuvola.gif') center center / cover no-repeat;
+      min-height: 100vh;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 20px;
+      justify-content: center;
+      text-align: center;
     }
-    iframe {
-      max-width: 100%;
+
+    #home::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 0;
+    }
+
+    #home * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .home-content {
+      max-width: 800px;
+    }
+
+    .home-content ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 30px;
+      font-size: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .home-content li::before {
+      content: "— ";
+    }
+
+    /* VIDEO GRID */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+      margin-top: 20px;
+      justify-items: center;
+    }
+
+    video, iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      background: #000;
+      border: none;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    video:hover,
+    iframe:hover {
+      transform: scale(1.03);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+    }
+
+    a {
+      color: #fff;
     }
   </style>
 </head>
+
 <body>
   <header>
     <h1>FilippoCSV</h1>
@@ -66,72 +133,81 @@
       <a href="#contatti" onclick="showSection('contatti')">Contatti</a>
     </nav>
   </header>
+
   <main>
+    <!-- HOME -->
     <section id="home" class="active">
-      <h2>Benvenuto</h2>
-      <p>Questa è la home del portfolio di FilippoCSV.</p>
+      <div class="home-content">
+        <h2>Esperienze</h2>
+        <ul>
+          <li>Cortometraggio “In alto ancora”</li>
+          <li>Secondo posto – Cento Ore Film Festival</li>
+          <li>Musical – Goliardia Pisana</li>
+          <li>Videoclip – Aaron “Rumore”</li>
+        </ul>
+      </div>
     </section>
+
+    <!-- PORTFOLIO -->
     <section id="portfolio">
       <h2>Portfolio</h2>
-      <div class="subcategory" id="video">
+
+      <div class="subcategory">
         <h3>Video</h3>
-        <div id="video-list"></div>
+        <div class="video-grid" id="video-grid">
+
+          <!-- Google Drive video -->
+          <video autoplay muted loop playsinline controls>
+            <source src="https://drive.google.com/uc?export=download&id=1p6A4J08tVLxCVWKyS58C6_UeT2gJpPSA" type="video/mp4">
+          </video>
+
+        </div>
       </div>
-      <div class="subcategory" id="visual">
+
+      <div class="subcategory">
         <h3>Visual</h3>
-        <div id="visual-list"></div>
+        <div class="video-grid" id="visual-list"></div>
       </div>
-      <div class="subcategory" id="audiovisuale">
+
+      <div class="subcategory">
         <h3>Audiovisuale interattivo</h3>
-        <div id="audiovisuale-list"></div>
+        <div class="video-grid" id="audiovisuale-list"></div>
       </div>
     </section>
+
+    <!-- CONTATTI -->
     <section id="contatti">
       <h2>Contatti</h2>
       <p>Email: <a href="mailto:filippo.pacelli0@gmail.com">filippo.pacelli0@gmail.com</a></p>
       <p>Instagram: <a href="https://instagram.com/filipppac_" target="_blank">@filipppac_</a></p>
     </section>
   </main>
+
   <script>
     function showSection(id) {
-      document.querySelectorAll('main section').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
       document.getElementById(id).classList.add('active');
     }
 
-    // Sezione Video
-    const videoList = document.getElementById('video-list');
-    const videoIDs = [
-      'LzwIt7OCwzE',
-      'wuvEYViLPUs',
-      'Jc7N9rbg7UU',
-      'xzg8gwSNUx8'
-    ];
+    // VIDEO YOUTUBE
+    const videoIDs = ['LzwIt7OCwzE','wuvEYViLPUs','Jc7N9rbg7UU','xzg8gwSNUx8'];
+    const videoGrid = document.getElementById('video-grid');
 
     videoIDs.forEach(id => {
       const iframe = document.createElement('iframe');
-      iframe.width = '800';
-      iframe.height = '450';
       iframe.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
-      iframe.title = 'YouTube video player';
-      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
       iframe.allowFullscreen = true;
-      videoList.appendChild(iframe);
+      videoGrid.appendChild(iframe);
     });
 
-    // Sezione Visual
+    // VISUAL
+    const visualIDs = ['8l6tyL1GhUc','ahlbnplAr0M'];
     const visualList = document.getElementById('visual-list');
-    const visualIDs = [
-      '8l6tyL1GhUc',
-      'ahlbnplAr0M'
-    ];
 
     visualIDs.forEach(id => {
       const iframe = document.createElement('iframe');
-      iframe.width = '800';
-      iframe.height = '450';
       iframe.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
-      iframe.title = 'YouTube video player';
-      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
       iframe.allowFullscreen = true;
       visualList.appendChild(iframe);
     });
