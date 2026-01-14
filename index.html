@@ -97,11 +97,10 @@
     .video-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 40px 30px; /* spazio tra righe e colonne */
+      gap: 40px 30px;
       margin-top: 30px;
     }
 
-    video,
     iframe {
       width: 100%;
       aspect-ratio: 16 / 9;
@@ -110,13 +109,11 @@
       transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
 
-    video:hover,
     iframe:hover {
       transform: scale(1.03);
       box-shadow: 0 20px 60px rgba(0,0,0,0.7);
     }
 
-    /* Responsive */
     @media (max-width: 1024px) {
       .video-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -167,10 +164,12 @@
 
     <div class="video-grid" id="video-grid">
 
-      <!-- Video Google Drive -->
-      <video autoplay muted loop playsinline controls>
-        <source src="https://drive.google.com/uc?export=download&id=1p6A4J08tVLxCVWKyS58C6_UeT2gJpPSA" type="video/mp4">
-      </video>
+      <!-- Google Drive EMBED (NUOVO LINK) -->
+      <iframe
+        src="https://drive.google.com/file/d/1LvRxKPRekWSWcwqF3tqaPO54esfRy-Nb/preview"
+        allow="autoplay"
+        loading="lazy">
+      </iframe>
 
     </div>
   </section>
