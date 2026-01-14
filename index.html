@@ -6,13 +6,41 @@
   <title>FilippoCSV — Home</title>
   <meta name="description" content="Portfolio di FilippoCSV — Home" />
 
-  <style>
-    body { margin:0; background:#000; color:#fff; font-family:Arial,sans-serif; }
-    header { background:#111; padding:10px 20px; display:flex; justify-content:space-between; align-items:center; }
-    header h1 { margin:0; font-size:1.5rem; }
-    nav a { color:#fff; margin-left:15px; text-decoration:none; }
-    nav a:hover { text-decoration:underline; }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
 
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    header {
+      background: #111;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 15px;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* ================= HOME ================= */
     #home {
       position: relative;
       background: url('media/home.gif') center center / cover no-repeat;
@@ -21,13 +49,38 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      padding: 0 20px;
     }
-    #home::before {
-      content: ""; position: absolute; inset:0; background:rgba(0,0,0,0.6); z-index:0;
-    }
-    #home * { position: relative; z-index:1; }
 
-    .home-content { max-width:800px; font-size:1.2rem; line-height:1.8; }
+    #home::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 0;
+    }
+
+    #home * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .home-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .home-content h2 {
+      font-family: 'Vogue', sans-serif;
+      font-size: 5rem; /* più grande del testo */
+      margin-bottom: 20px;
+    }
+
+    .home-content p {
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.3rem; /* leggermente più grande rispetto a prima */
+      line-height: 1.8;
+    }
   </style>
 </head>
 <body>
@@ -44,8 +97,9 @@
 <main>
   <section id="home">
     <div class="home-content">
+      <h2>About:</h2>
       <p>
-        Ciao sono Filippo e negli anni mi sono occupato di regia, montaggio e di art direction multimediale, andando a realizzare: videoclip, cortometraggi e installazioni interattive audiovisuali. Ho esperienza in tutto il processo creativo dal concept alla realizzazione tecnica, prediligo il pacchetto Adobe come ad esempio After Effects e Premiere e parallelamente TouchDesigner. Se trovi interessante i miei lavori sulla sezione portfolio, non esitare a contattarmi sulla mail o per telefono.
+        Ciao sono Filippo e negli anni mi sono occupato di regia, montaggio e di art direction multimediale, andando a realizzare: videoclip, cortometraggi e installazioni interattive audiovisuali. Ho esperienza in tutto il processo creativo dal concept alla realizzazione tecnica, prediligo il pacchetto Adobe come ad esempio After Effects e Premiere e parallelamente TouchDesigner. Se trovi interessante i miei lavori sulla sezione portfolio, non esitare a contattarmi sulla mail o per telefono!
       </p>
     </div>
   </section>
