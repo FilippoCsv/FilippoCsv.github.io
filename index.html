@@ -51,8 +51,6 @@
       display: block;
     }
 
-    /* ================= HOME ================= */
-
     #home {
       position: relative;
       background: url('media/home.gif') center center / cover no-repeat;
@@ -68,15 +66,10 @@
       position: absolute;
       inset: 0;
       background: rgba(0,0,0,0.6);
-      z-index: 0;
-    }
-
-    #home * {
-      position: relative;
-      z-index: 1;
     }
 
     .home-content {
+      position: relative;
       max-width: 800px;
     }
 
@@ -92,8 +85,6 @@
       content: "— ";
     }
 
-    /* ================= PORTFOLIO GRID ================= */
-
     .video-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -104,14 +95,52 @@
     iframe {
       width: 100%;
       aspect-ratio: 16 / 9;
-      background: #000;
       border: none;
+      background: #000;
       transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
 
     iframe:hover {
       transform: scale(1.03);
       box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+    }
+
+    .video-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      cursor: pointer;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .video-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .video-thumb:hover img {
+      transform: scale(1.05);
+    }
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 64px;
+      color: #fff;
+      opacity: 0.9;
+      pointer-events: none;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.8);
+    }
+
+    .video-thumb iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
     @media (max-width: 1024px) {
@@ -145,72 +174,76 @@
 
 <main>
 
-  <!-- HOME -->
-  <section id="home" class="active">
-    <div class="home-content">
-      <h2>Esperienze</h2>
-      <ul>
-        <li>Cortometraggio “In alto ancora”</li>
-        <li>Secondo posto – Cento Ore Film Festival</li>
-        <li>Musical – Goliardia Pisana</li>
-        <li>Videoclip – Aaron “Rumore”</li>
-      </ul>
+<section id="home" class="active">
+  <div class="home-content">
+    <h2>Esperienze</h2>
+    <ul>
+      <li>Cortometraggio “In alto ancora”</li>
+      <li>Secondo posto – Cento Ore Film Festival</li>
+      <li>Musical – Goliardia Pisana</li>
+      <li>Videoclip – Aaron “Rumore”</li>
+    </ul>
+  </div>
+</section>
+
+<section id="portfolio">
+  <h2>Portfolio</h2>
+
+  <div class="video-grid" id="video-grid">
+
+    <div class="video-thumb" onclick="loadDriveVideo(this)">
+      <img src="media/thumb-video.jpg" alt="Play video">
+      <div class="play-button">▶</div>
+      <template>
+        <iframe
+          src="https://drive.google.com/file/d/1LvRxKPRekWSWcwqF3tqaPO54esfRy-Nb/preview"
+          allow="autoplay">
+        </iframe>
+      </template>
     </div>
-  </section>
 
-  <!-- PORTFOLIO -->
-  <section id="portfolio">
-    <h2>Portfolio</h2>
+  </div>
+</section>
 
-    <div class="video-grid" id="video-grid">
-
-      <!-- Google Drive EMBED (NUOVO LINK) -->
-      <iframe
-        src="https://drive.google.com/file/d/1LvRxKPRekWSWcwqF3tqaPO54esfRy-Nb/preview"
-        allow="autoplay"
-        loading="lazy">
-      </iframe>
-
-    </div>
-  </section>
-
-  <!-- CONTATTI -->
-  <section id="contatti">
-    <h2>Contatti</h2>
-    <p>Email:
-      <a href="mailto:filippo.pacelli0@gmail.com">
-        filippo.pacelli0@gmail.com
-      </a>
-    </p>
-  </section>
+<section id="contatti">
+  <h2>Contatti</h2>
+  <p>Email:
+    <a href="mailto:filippo.pacelli0@gmail.com">
+      filippo.pacelli0@gmail.com
+    </a>
+  </p>
+</section>
 
 </main>
 
 <script>
-  function showSection(id) {
-    document.querySelectorAll('main section')
-      .forEach(sec => sec.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
+function showSection(id) {
+  document.querySelectorAll('main section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
 
-  // Video YouTube
-  const videoIDs = [
-    'LzwIt7OCwzE',
-    'wuvEYViLPUs',
-    'Jc7N9rbg7UU',
-    'xzg8gwSNUx8'
-  ];
+function loadDriveVideo(el) {
+  const tpl = el.querySelector('template');
+  el.innerHTML = "";
+  el.appendChild(tpl.content.cloneNode(true));
+}
 
-  const grid = document.getElementById('video-grid');
+const videoIDs = [
+  'LzwIt7OCwzE',
+  'wuvEYViLPUs',
+  'Jc7N9rbg7UU',
+  'xzg8gwSNUx8'
+];
 
-  videoIDs.forEach(id => {
-    const iframe = document.createElement('iframe');
-    iframe.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
-    iframe.allow =
-      'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-    iframe.allowFullscreen = true;
-    grid.appendChild(iframe);
-  });
+const grid = document.getElementById('video-grid');
+
+videoIDs.forEach(id => {
+  const iframe = document.createElement('iframe');
+  iframe.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
+  iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+  iframe.allowFullscreen = true;
+  grid.appendChild(iframe);
+});
 </script>
 
 </body>
