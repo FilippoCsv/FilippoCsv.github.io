@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FilippoCSV — Portfolio</title>
+  <meta name="description" content="Portfolio di FilippoCSV con video, contatti e progetti." />
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      background: #111;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    nav a {
+      color: #fff;
+      margin-left: 15px;
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 20px;
+    }
+    section {
+      display: none;
+    }
+    section.active {
+      display: block;
+    }
+    h2 {
+      margin-top: 0;
+    }
+    .subcategory {
+      margin-top: 15px;
+    }
+    #video-list, #visual-list, #audiovisuale-list {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+    iframe {
+      max-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>FilippoCSV</h1>
+    <nav>
+      <a href="#home" onclick="showSection('home')">Home</a>
+      <a href="#portfolio" onclick="showSection('portfolio')">Portfolio</a>
+      <a href="#contatti" onclick="showSection('contatti')">Contatti</a>
+    </nav>
+  </header>
+  <main>
+    <section id="home" class="active">
+      <h2>Benvenuto</h2>
+      <p>Questa è la home del portfolio di FilippoCSV.</p>
+    </section>
+    <section id="portfolio">
+      <h2>Portfolio</h2>
+      <div class="subcategory" id="video">
+        <h3>Video</h3>
+        <div id="video-list"></div>
+      </div>
+      <div class="subcategory" id="visual">
+        <h3>Visual</h3>
+        <div id="visual-list"></div>
+      </div>
+      <div class="subcategory" id="audiovisuale">
+        <h3>Audiovisuale interattivo</h3>
+        <div id="audiovisuale-list"></div>
+      </div>
+    </section>
+    <section id="contatti">
+      <h2>Contatti</h2>
+      <p>Email: <a href="mailto:filippo.pacelli0@gmail.com">filippo.pacelli0@gmail.com</a></p>
+      <p>Instagram: <a href="https://instagram.com/filipppac_" target="_blank">@filipppac_</a></p>
+    </section>
+  </main>
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('main section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    // Sezione Video
+    const videoList = document.getElementById('video-list');
+    const videoIDs = [
+      'LzwIt7OCwzE',
+      'wuvEYViLPUs',
+      'Jc7N9rbg7UU',
+      'xzg8gwSNUx8'
+    ];
+
+    videoIDs.forEach(id => {
+      const iframe = document.createElement('iframe');
+      iframe.width = '800';
+      iframe.height = '450';
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
+      iframe.title = 'YouTube video player';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      videoList.appendChild(iframe);
+    });
+
+    // Sezione Visual
+    const visualList = document.getElementById('visual-list');
+    const visualIDs = [
+      '8l6tyL1GhUc',
+      'ahlbnplAr0M'
+    ];
+
+    visualIDs.forEach(id => {
+      const iframe = document.createElement('iframe');
+      iframe.width = '800';
+      iframe.height = '450';
+      iframe.src = `https://www.youtube-nocookie.com/embed/${id}?rel=0&modestbranding=1`;
+      iframe.title = 'YouTube video player';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.allowFullscreen = true;
+      visualList.appendChild(iframe);
+    });
+  </script>
+</body>
+</html>
