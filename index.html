@@ -75,6 +75,14 @@
       z-index: 1;
     }
 
+    /* ================= ALTRE SEZIONI ================= */
+    #portfolio, #contatti {
+      background: #000; /* sfondo nero uniforme */
+      padding: 40px 20px;
+      display: block;
+    }
+
+    /* ================= CONTENUTI HOME ================= */
     .home-content {
       max-width: 800px;
     }
@@ -121,7 +129,7 @@
       overflow: hidden;
       border-radius: 8px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      background: #000; /* sfondo nero per le bande se necessario */
+      background: #000;
     }
 
     .video-wrapper:hover {
@@ -132,8 +140,8 @@
     .video-wrapper img {
       width: 100%;
       height: 100%;
-      object-fit: contain; /* <-- cambia cover in contain per non tagliare l'immagine */
-      background: #000;    /* bande nere se le proporzioni non sono 16:9 */
+      object-fit: contain; /* mantiene proporzioni senza taglio */
+      background: #000;    /* bande nere se necessario */
       display: block;
     }
 
@@ -193,7 +201,6 @@
   <!-- PORTFOLIO -->
   <section id="portfolio">
     <h2>Portfolio</h2>
-
     <div class="video-grid" id="video-grid">
 
       <!-- Video Google Drive con thumbnail locale -->
@@ -205,13 +212,6 @@
           </svg>
         </div>
       </div>
-
-      <!-- Video YouTube aggiuntivo -->
-      <iframe
-        src="https://www.youtube-nocookie.com/embed/ZLihGwTvYjY?rel=0&modestbranding=1"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen>
-      </iframe>
 
     </div>
   </section>
@@ -235,13 +235,13 @@
     document.getElementById(id).classList.add('active');
   }
 
-  // Video YouTube aggiuntivi
+  // Video YouTube
   const videoIDs = [
     'LzwIt7OCwzE',
     'wuvEYViLPUs',
     'Jc7N9rbg7UU',
     'xzg8gwSNUx8',
-
+    'ZLihGwTvYjY' // video aggiuntivo
   ];
 
   const grid = document.getElementById('video-grid');
